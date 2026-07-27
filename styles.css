@@ -92,6 +92,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .nav-links.open{transform:translateX(0);}
   .menu-toggle{display:flex;}
   .nav-phone{display:none;}
+  .nav-cta .btn-amber{padding-top:8px;padding-bottom:8px;}
 }
 
 /* =========================================================
