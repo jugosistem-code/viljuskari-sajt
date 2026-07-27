@@ -174,7 +174,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 .plate-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:.82rem;color:rgba(242,243,245,.6);border-bottom:1px dotted rgba(242,243,245,.08);}
 .plate-row:last-of-type{border-bottom:none;}
-.plate-row b{color:var(--fog);font-weight:600;}
+.plate-row b{color:var(--fog);font-weight:600;overflow-wrap:anywhere;text-align:right;}
 .plate-strip{height:5px;margin-top:14px;background:repeating-linear-gradient(135deg, var(--amber) 0 8px, var(--carbon) 8px 10px);}
 .plate-hero{opacity:0;transform:translateY(16px);animation:riseIn .7s ease .58s forwards;}
 
