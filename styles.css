@@ -185,7 +185,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 @media (max-width:560px){
   .hero-ctas{flex-direction:column;align-items:stretch;}
-  .hero-ctas .btn{width:50%;text-align:left;}
+  .hero-ctas .btn{width:50%;text-align:left;padding-top:8px;padding-bottom:8px;}
 }
 
 /* =========================================================
