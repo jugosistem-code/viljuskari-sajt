@@ -58,11 +58,11 @@ const PRODUCTS = [
 
 // Da dodaš pravu fotografiju, dodaj polje image: "images/galerija-1.jpg" uz caption.
 const GALLERY = [
-  { caption: "Utovar u distributivnom centru", image: "images/Jugosistem-na-sajmu-u-Nisu166.webp" },
-  { caption: "Reach truck na visokom regalu", image: "images/Jugosistem-na-sajmu-u-Nisu180.webp" },
-  { caption: "Dizel viljuškar na gradilištu", image: "images/Jugosistem na sajmu u Nisu95.webp" },
-  { caption: "Paletar u maloprodajnom magacinu", image: "images/Jugosistem na sajmu u Nisu81.webp" },
-  { caption: "Servisna intervencija na terenu", image: "images/Jugosistem-na-sajmu-u-Nisu166.webp" },
+  { caption: "Lonking viljuškari na sajmu", image: "images/Jugosistem-na-sajmu-u-Nisu166.webp" },
+  { caption: "Električni viljuškar sa kabinom", image: "images/Jugosistem-na-sajmu-u-Nisu180.webp" },
+  { caption: "Lonking Dizel viljuškar", image: "images/Jugosistem na sajmu u Nisu95.webp" },
+  { caption: "Elektro-viljuškar-olovna baterija", image: "images/Jugosistem na sajmu u Nisu81.webp" },
+  { caption: "Viljuškari na sajmu u Nišu", image: "images/Jugosistem-na-sajmu-u-Nisu166.webp" },
 ];
 
 /* =========================================================
