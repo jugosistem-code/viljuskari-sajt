@@ -243,6 +243,45 @@ function markReveal(){
 }
 
 /* =========================================================
+   ANIMIRANO BROJANJE (statistika u O nama sekciji)
+   Broji od 0 do ciljne vrednosti (data-count) kad element
+   udje u vidno polje, dodaje nazad "+" na kraju.
+   ========================================================= */
+function animateCount(el){
+  const target = parseInt(el.dataset.count, 10);
+  if(isNaN(target)) return;
+  const duration = 1400;
+  const startTime = performance.now();
+
+  function tick(now){
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3); // ease-out
+    const current = Math.round(eased * target);
+    el.textContent = current + '+';
+    if(progress < 1){
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = target + '+';
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+function initCounters(){
+  const counters = document.querySelectorAll('[data-count]');
+  if(!counters.length) return;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        animateCount(entry.target);
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.4});
+  counters.forEach(el => io.observe(el));
+}
+
+/* =========================================================
    KONTAKT FORMA
    ========================================================= */
 function initForm(){
@@ -302,5 +341,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   initScrollCue();
   markReveal();
   initReveal();
+  initCounters();
   initForm();
 });
