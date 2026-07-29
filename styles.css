@@ -238,7 +238,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .onama-stats span{font-size:.82rem;color:var(--slate);}
 @media (max-width:560px){
   .onama-stats{gap:16px;}
-  .onama-stats b{font-size:2rem;}
+  .onama-stats b{font-size:1.8rem;}
 }
 .ph-onama{aspect-ratio:3/3.4;border-radius:var(--radius);}
 @media (max-width:900px){.onama-grid{grid-template-columns:1fr;}.ph-onama{order:-1;aspect-ratio:16/10;}}
