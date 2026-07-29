@@ -91,7 +91,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   .nav-links{
     position:fixed;top:64px;left:0;width:50%;background:var(--carbon);
     flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left;
-    padding:28px 28px 32px;gap:24px;font-size:1.3rem;
+    padding:28px 28px 32px;gap:24px;font-size:1.1rem;
     transform:translateX(-100%);transition:transform .25s ease;border-top:1px solid var(--line-dark);
     box-shadow:4px 4px 24px rgba(0,0,0,.35);border-bottom-right-radius:8px;
   }
