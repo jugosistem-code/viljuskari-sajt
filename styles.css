@@ -205,6 +205,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .trust-item span{color:rgba(242,243,245,.55);font-size:.85rem;line-height:1.4;}
 @media (max-width:860px){.trust-grid{grid-template-columns:1fr 1fr;}}
 @media (max-width:560px){.trust-grid{grid-template-columns:1fr;}}
+@media (max-width:560px){.onama-stats b{font-size:2rem;}}
 
 /* =========================================================
    SECTION generic
