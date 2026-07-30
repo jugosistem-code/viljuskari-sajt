@@ -326,6 +326,55 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   color:var(--fog);font-size:.78rem;font-weight:600;
 }
 .gallery-item:nth-child(1),.gallery-item:nth-child(6){grid-column:span 2;grid-row:span 2;}
+.gallery-item{cursor:pointer;}
+
+/* =========================================================
+   LIGHTBOX (modal za uvecani prikaz slike iz galerije)
+   ========================================================= */
+.lightbox{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(15,17,19,.95);
+  display:none;align-items:center;justify-content:center;
+  padding:40px 24px;
+  opacity:0;transition:opacity .25s ease;
+}
+.lightbox.open{display:flex;opacity:1;}
+.lightbox-img{
+  max-width:min(1100px,92vw);max-height:86vh;
+  object-fit:contain;border-radius:2px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  transform:scale(.96);transition:transform .25s ease;
+}
+.lightbox.open .lightbox-img{transform:scale(1);}
+.lightbox-caption{
+  position:absolute;left:0;right:0;bottom:24px;text-align:center;
+  color:rgba(242,243,245,.8);font-size:.9rem;font-family:var(--font-mono);
+}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;
+  background:none;border:1.5px solid rgba(242,243,245,.35);color:var(--fog);
+  width:42px;height:42px;border-radius:50%;font-size:1.6rem;line-height:1;
+  cursor:pointer;transition:border-color .15s, color .15s;
+}
+.lightbox-close:hover{border-color:var(--amber);color:var(--amber);}
+.lightbox-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(242,243,245,.3);color:var(--fog);
+  width:48px;height:48px;border-radius:50%;font-size:1.1rem;
+  cursor:pointer;transition:border-color .15s, color .15s, background .15s;
+  display:flex;align-items:center;justify-content:center;
+}
+.lightbox-arrow:hover{border-color:var(--amber);color:var(--amber);background:rgba(255,179,0,.08);}
+.lightbox-prev{left:20px;}
+.lightbox-next{right:20px;}
+@media (max-width:700px){
+  .lightbox-arrow{width:40px;height:40px;font-size:.95rem;}
+  .lightbox-prev{left:8px;}
+  .lightbox-next{right:8px;}
+}
+@media (max-width:560px){
+  .lightbox-close{top:12px;right:12px;width:38px;height:38px;font-size:1.4rem;}
+}
 @media (max-width:860px){.gallery-grid{grid-template-columns:repeat(2,1fr);}.gallery-item:nth-child(1),.gallery-item:nth-child(6){grid-column:span 1;grid-row:span 1;}}
 
 /* =========================================================

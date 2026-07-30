@@ -121,7 +121,7 @@ function renderGallery(){
   const grid = document.getElementById('galleryGrid');
   if(!grid) return;
   grid.innerHTML = GALLERY.map(g => `
-    <div class="gallery-item reveal">
+    <div class="gallery-item reveal" data-full="${g.image || ''}" data-caption="${g.caption}">
       <div class="ph-photo">
         ${g.image ? `
         <img src="${g.image}" alt="${g.caption}" class="real-photo" loading="lazy">
@@ -137,6 +137,92 @@ function renderGallery(){
       <div class="gcap">${g.caption}</div>
     </div>
   `).join('');
+
+  grid.querySelectorAll('.gallery-item').forEach((item, idx)=>{
+    item.addEventListener('click', ()=>{
+      if(!item.dataset.full) return; // placeholder bez prave slike - nema sta da se otvori
+      openLightbox(idx);
+    });
+  });
+}
+
+/* =========================================================
+   LIGHTBOX (modal za uvecani prikaz slike, sa navigacijom)
+   ========================================================= */
+let lightboxIndex = 0;
+
+function getLightboxItems(){
+  // samo stavke galerije koje imaju pravu sliku (preskace placeholdere)
+  return GALLERY
+    .map((g, i) => ({...g, idx: i}))
+    .filter(g => g.image);
+}
+
+function openLightbox(startIndex){
+  const items = getLightboxItems();
+  const pos = items.findIndex(g => g.idx === startIndex);
+  lightboxIndex = pos >= 0 ? pos : 0;
+  showLightboxImage();
+
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+function showLightboxImage(){
+  const items = getLightboxItems();
+  if(!items.length) return;
+  const item = items[lightboxIndex];
+  const img = document.getElementById('lightboxImg');
+  const cap = document.getElementById('lightboxCaption');
+  img.src = item.image;
+  img.alt = item.caption || '';
+  cap.textContent = item.caption || '';
+}
+
+function nextLightboxImage(){
+  const items = getLightboxItems();
+  if(!items.length) return;
+  lightboxIndex = (lightboxIndex + 1) % items.length; // vrti se na pocetak
+  showLightboxImage();
+}
+
+function prevLightboxImage(){
+  const items = getLightboxItems();
+  if(!items.length) return;
+  lightboxIndex = (lightboxIndex - 1 + items.length) % items.length; // vrti se na kraj
+  showLightboxImage();
+}
+
+function closeLightbox(){
+  const lightbox = document.getElementById('lightbox');
+  if(!lightbox) return;
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+function initLightbox(){
+  const lightbox = document.getElementById('lightbox');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  if(!lightbox) return;
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); prevLightboxImage(); });
+  nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); nextLightboxImage(); });
+
+  lightbox.addEventListener('click', (e)=>{
+    if(e.target === lightbox) closeLightbox(); // klik van slike zatvara
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowRight') nextLightboxImage();
+    if(e.key === 'ArrowLeft') prevLightboxImage();
+  });
 }
 
 /* =========================================================
@@ -342,5 +428,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   markReveal();
   initReveal();
   initCounters();
+  initLightbox();
   initForm();
 });
