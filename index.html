@@ -254,7 +254,14 @@
     <div class="kontakt-form-wrap">
       <div class="eyebrow">Zatražite ponudu</div>
       <h2>Pošaljite upit — javljamo se u toku dana.</h2>
-      <form id="contactForm" class="contact-form" novalidate>
+      <form id="contactForm" class="contact-form" novalidate
+            action="https://api.web3forms.com/submit" method="POST">
+        <!-- OVDE UNESI SVOJ ACCESS KEY sa web3forms.com (besplatno, bez registracije):
+             1. Idi na https://web3forms.com
+             2. Unesi svoj email (npr. office@jugosistem.com) i klikni "Create Access Key"
+             3. Access key koji dobiješ na email zalepi ispod umesto teksta UNESI-SVOJ-ACCESS-KEY -->
+        <input type="hidden" name="access_key" value="aac44fe3-b049-4944-a254-e3b283d1cb14">
+        <input type="hidden" name="subject" value="Novi upit sa sajta Viljuskari.in">
         <div class="form-row">
           <label for="ime">Ime i prezime</label>
           <input type="text" id="ime" name="ime" required>
