@@ -279,6 +279,27 @@ function renderModels(){
 }
 
 
+/* =========================================================
+   PLUTAJUĆA DUGMAD (WhatsApp / Viber)
+   Isti broj telefona koji se koristi svuda na sajtu.
+   Da promeniš broj, promeni ga u PHONE_INTL ispod.
+   ========================================================= */
+function initFloatingContact(){
+  const PHONE_INTL = '381603355672'; // bez + i razmaka, za WhatsApp/Viber linkove
+
+  const wrap = document.createElement('div');
+  wrap.className = 'floating-contact';
+  wrap.innerHTML = `
+    <a href="https://wa.me/${PHONE_INTL}" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Pošaljite poruku na WhatsApp">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.6 14.2c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.1-.5-.1-.1-.6-1.5-.9-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.6.2-1.2.1-1.4-.1-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+    </a>
+    <a href="viber://chat?number=%2B${PHONE_INTL}" class="floating-viber" aria-label="Pošaljite poruku na Viber">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M12.3 2C7.6 1.9 3.4 4.9 2.2 9.4c-.6 2.2-.3 4.5.7 6.5.2.4.3.8.2 1.2l-.6 2.4c-.1.4.3.8.7.6l2.4-.9c.4-.1.8-.1 1.2.1 1.4.6 2.9.9 4.4.8 5-.2 9.1-4.1 9.5-9 .5-5.4-3.7-10-9.4-10.1zm4.9 13.6c-.2.3-.5.6-.9.7-.6.2-1.3.3-3.5-.7-1.9-.9-3.3-2.5-4.4-4.1-.6-.9-1-1.9-1-2.9 0-1.1.6-1.9 1.1-2.4.2-.2.5-.3.7-.3h.4c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.2.1.4 0 .5-.1.2-.1.3-.3.5-.1.2-.3.3-.4.5-.1.1-.3.3-.1.5.2.3.7 1.1 1.5 1.8.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1.2-.2.6-.7.8-.9.2-.2.3-.2.5-.1.2.1 1.4.7 1.6.8.2.1.4.2.4.3.1.2.1.6-.1.9z"/><path d="M12.2 4c3.9.1 7.1 3 7.4 6.9.1 1.7-.4 3.3-1.3 4.7" stroke="white" stroke-width=".5" fill="none"/></svg>
+    </a>
+  `;
+  document.body.appendChild(wrap);
+}
+
 function initNav(){
   const toggle = document.getElementById('menuToggle');
   const links = document.getElementById('navLinks');
@@ -424,6 +445,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   renderModels();
   prefillFromQuery();
   initNav();
+  initFloatingContact();
   initScrollCue();
   markReveal();
   initReveal();
