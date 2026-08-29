@@ -285,7 +285,7 @@ function renderModels(){
    Da promeniš broj, promeni ga u PHONE_INTL ispod.
    ========================================================= */
 function initFloatingContact(){
-  const PHONE_INTL = '381603355672'; // bez + i razmaka, za WhatsApp/Viber linkove
+  const PHONE_INTL = '381600243712'; // bez + i razmaka, za WhatsApp/Viber linkove
 
   const wrap = document.createElement('div');
   wrap.className = 'floating-contact';
