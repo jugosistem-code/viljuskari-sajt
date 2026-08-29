@@ -401,10 +401,17 @@ function initForm(){
     const ime = document.getElementById('ime').value.trim();
     const telefon = document.getElementById('telefon').value.trim();
     const email = document.getElementById('email').value.trim();
+    const privatnost = document.getElementById('privatnost');
 
     if(!ime || !telefon || !email){
       status.style.color = '#FF6B4A';
       status.textContent = 'Molimo popunite ime, telefon i email pre slanja.';
+      return;
+    }
+
+    if(privatnost && !privatnost.checked){
+      status.style.color = '#FF6B4A';
+      status.textContent = 'Molimo potvrdite saglasnost sa politikom privatnosti.';
       return;
     }
 
