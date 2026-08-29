@@ -1,0 +1,42 @@
+# ============================================
+# 404 stranica
+# ============================================
+ErrorDocument 404 /404.html
+
+# ============================================
+# Prisilno www i https (preporucljivo za SEO - jedna kanonicna verzija adrese)
+# ============================================
+RewriteEngine On
+
+# Izuzetak: .well-known putanja se NIKAD ne preusmerava
+# (koristi je Let's Encrypt/AutoSSL za automatsko obnavljanje SSL sertifikata)
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+
+# Prebaci sve na https
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+# Prebaci sve na www verziju
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ============================================
+# Keširanje statičkih fajlova (brže učitavanje za povratne posetioce)
+# ============================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# ============================================
+# GZIP kompresija (brže učitavanje)
+# ============================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript
+</IfModule>
