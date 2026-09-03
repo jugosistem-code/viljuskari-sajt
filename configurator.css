@@ -1,0 +1,106 @@
+/* configurator.css — stilovi specifični za konfigurator.html
+   Koristi iste design tokene iz styles.css (var(--amber) itd.) */
+
+.cfg-layout{
+  display:grid;grid-template-columns:1.3fr .9fr;gap:56px;align-items:start;
+}
+
+/* ===== KORACI (leva strana) ===== */
+.cfg-step{
+  padding:32px 0;border-bottom:1px solid var(--line-light);
+  opacity:0;animation:cfgFadeIn .4s ease forwards;
+}
+.cfg-step:first-child{padding-top:0;}
+.cfg-step:last-child{border-bottom:none;}
+@keyframes cfgFadeIn{to{opacity:1;}}
+.cfg-step[hidden]{display:none;}
+
+.cfg-step-num{
+  font-family:var(--font-mono);color:var(--amber-deep);font-weight:700;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;
+}
+.cfg-step h2{font-size:1.3rem;margin-bottom:20px;}
+
+.cfg-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.cfg-type-btn{
+  background:var(--white);border:1.5px solid var(--line-light);border-radius:var(--radius);
+  padding:20px 16px;text-align:left;cursor:pointer;transition:border-color .15s, box-shadow .15s;
+  display:flex;flex-direction:column;gap:4px;
+}
+.cfg-type-btn:hover{border-color:var(--amber);}
+.cfg-type-btn.active{border-color:var(--amber);border-width:2px;box-shadow:0 6px 16px rgba(255,179,0,.18);}
+.cfg-type-name{font-family:var(--font-display);font-weight:900;font-size:1.05rem;}
+.cfg-type-desc{font-size:.8rem;color:var(--slate);}
+
+.cfg-select{
+  width:100%;padding:13px 14px;border:1.5px solid var(--line-light);border-radius:var(--radius);
+  font-family:var(--font-body);font-size:.95rem;color:var(--ink);background:var(--white);
+  cursor:pointer;
+}
+.cfg-select:focus{outline:none;border-color:var(--amber);}
+.cfg-label{display:block;font-size:.8rem;font-weight:700;color:var(--slate);margin-bottom:8px;}
+.cfg-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+.cfg-warning{
+  margin-top:14px;padding:12px 14px;background:#FFF6E5;border:1px solid var(--amber);
+  border-radius:var(--radius);font-size:.85rem;color:#7A5300;
+}
+
+.cfg-addons{display:flex;flex-direction:column;gap:12px;}
+.cfg-addon-label{
+  display:flex;align-items:center;gap:10px;padding:14px 16px;
+  border:1.5px solid var(--line-light);border-radius:var(--radius);cursor:pointer;
+  transition:border-color .15s;
+}
+.cfg-addon-label:has(input:checked){border-color:var(--amber);background:#FFFBF0;}
+.cfg-addon-label input{width:18px;height:18px;accent-color:var(--amber);cursor:pointer;flex-shrink:0;}
+.cfg-addon-label span{font-size:.92rem;font-weight:600;}
+
+/* ===== REZULTAT (desna strana, plate stil) ===== */
+.cfg-result-wrap{position:sticky;top:96px;}
+.cfg-result{background:var(--carbon);}
+.cfg-result[hidden]{display:none;}
+.cfg-total-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:14px 0 4px;font-family:var(--font-display);
+}
+.cfg-total-row span{font-size:.82rem;color:rgba(242,243,245,.6);}
+.cfg-total-row b{font-size:1.5rem;color:var(--amber);font-weight:900;}
+.cfg-total-row-vat{padding-top:2px;}
+.cfg-total-row-vat span{font-size:.75rem;}
+.cfg-total-row-vat b{font-size:1rem;color:rgba(242,243,245,.75);font-weight:700;}
+.cfg-disclaimer{
+  font-size:.72rem;color:rgba(242,243,245,.45);margin:16px 0 18px;line-height:1.5;
+}
+.cfg-send-btn{margin-top:0;}
+
+.cfg-empty-hint{
+  margin-top:78px; /* poravnava donju ivicu sa dugmadima tipa pogona (visina "Korak 1" naslova) */
+  padding:26px 24px;
+}
+.cfg-empty-hint p{color:var(--amber);font-family:var(--font-body);font-size:.95rem;line-height:1.6;font-weight:600;text-align:center;}
+.cfg-empty-hint[hidden]{display:none;}
+
+/* ===== STANDARDNA OPREMA (info blok) ===== */
+.cfg-standard-equip{
+  margin-top:36px;padding:24px 26px;background:var(--fog);border-radius:var(--radius);
+  border-left:3px solid var(--amber);
+}
+.cfg-standard-equip h3{font-size:.95rem;font-weight:800;margin-bottom:14px;color:var(--ink);}
+.cfg-standard-equip ul{list-style:none;}
+.cfg-standard-equip li{
+  font-size:.86rem;color:var(--slate);padding-left:20px;position:relative;margin-bottom:9px;
+}
+.cfg-standard-equip li:last-child{margin-bottom:0;}
+.cfg-standard-equip li::before{
+  content:"";position:absolute;left:0;top:8px;width:8px;height:2px;background:var(--amber-deep);
+}
+.cfg-standard-equip li span{color:#A8A296;font-size:.8rem;}
+
+@media (max-width:960px){
+  .cfg-layout{grid-template-columns:1fr;gap:0;}
+  .cfg-result-wrap{position:static;margin-top:32px;}
+  .cfg-type-grid{grid-template-columns:1fr;}
+  .cfg-row-2{grid-template-columns:1fr;}
+  .cfg-empty-hint{margin-top:0;}
+}
